@@ -1,21 +1,22 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
-import { useAuth } from '../hooks/AuthProvider';
 
-const HomeScreen = ({ navigation }) => {
-  const { user } = useAuth();
-
+const WelcomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image source={require('../assets/icons/Moneda_taxitip.png')} style={styles.logo} />
-      <Text style={styles.title}>
-        ¡Bienvenido {user ? user.name : 'Invitado'}!
-      </Text>
+      <Text style={styles.title}>¡Bienvenido a TaxiTip!</Text>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate('Profile')}
+        onPress={() => navigation.navigate('SignUp')}
       >
-        <Text style={styles.buttonText}>Ir al Perfil</Text>
+        <Text style={styles.buttonText}>Registrarse</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.button, styles.outlineButton]}
+        onPress={() => navigation.navigate('Login')}
+      >
+        <Text style={styles.outlineButtonText}>Iniciar Sesión</Text>
       </TouchableOpacity>
     </View>
   );
@@ -42,14 +43,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#007bff',
     padding: 10,
     borderRadius: 5,
+    marginBottom: 10,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
   },
+  outlineButton: {
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#007bff',
+  },
+  outlineButtonText: {
+    color: '#007bff',
+  },
 });
 
-export default HomeScreen;
-
-
+export default WelcomeScreen;
 
