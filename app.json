@@ -4,12 +4,12 @@
     "slug": "App_Usuario02",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/icons/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "assetBundlePatterns": ["**/*"],
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./src/assets/icons/logotxtp.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,7 +18,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/assets/icons/icon.png",
         "backgroundColor": "#ffffff"
       }
     },

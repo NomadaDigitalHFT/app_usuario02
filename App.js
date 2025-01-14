@@ -1,11 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import globalStyles from './src/styles/globalStyles'; // Importa los estilos globales
+import AppNavigator from './src/navigation/AppNavigator'; // Ruta correcta al archivo AppNavigator 
 
 export default function App() {
-    return (
-        <View style={globalStyles.container}>
-            <Text style={globalStyles.text}>¡Hola Mundo!</Text>
-        </View>
-    );
+  return <AppNavigator />;
 }

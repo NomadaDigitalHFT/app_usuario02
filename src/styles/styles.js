@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import colors from './theme'; // Importa los colores del archivo theme.js
+import colors from './theme';
 
 const globalStyles = StyleSheet.create({
   container: {
