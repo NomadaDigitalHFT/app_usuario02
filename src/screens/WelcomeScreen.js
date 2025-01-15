@@ -1,63 +1,73 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { useNavigate } from "react-router-dom";
 
-const WelcomeScreen = ({ navigation }) => {
+const WelcomeScreen = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  const handleSignUp = () => {
+    navigate("/signup");
+  };
+
   return (
-    <View style={styles.container}>
-      <Image source={require('../assets/icons/Moneda_taxitip.png')} style={styles.logo} />
-      <Text style={styles.title}>¡Bienvenido a TaxiTip!</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate('SignUp')}
-      >
-        <Text style={styles.buttonText}>Registrarse</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.button, styles.outlineButton]}
-        onPress={() => navigation.navigate('Login')}
-      >
-        <Text style={styles.outlineButtonText}>Iniciar Sesión</Text>
-      </TouchableOpacity>
-    </View>
+    <div style={styles.container}>
+      <h1 style={styles.title}>¡Bienvenido a TaxiTip!</h1>
+      <p style={styles.subtitle}>
+        La forma más sencilla de solicitar y ofrecer servicios de transporte.
+      </p>
+      <div style={styles.buttonContainer}>
+        <button style={styles.button} onClick={handleLogin}>
+          Iniciar Sesión
+        </button>
+        <button style={styles.button} onClick={handleSignUp}>
+          Registrarse
+        </button>
+      </div>
+    </div>
   );
 };
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f9f9f9',
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 20,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+    backgroundColor: "#f5f5f5",
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: "2rem",
+    fontWeight: "bold",
+    marginBottom: "1rem",
+  },
+  subtitle: {
+    fontSize: "1.2rem",
+    marginBottom: "2rem",
+    textAlign: "center",
+    color: "#555",
+  },
+  buttonContainer: {
+    display: "flex",
+    gap: "1rem",
   },
   button: {
-    backgroundColor: '#007bff',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
+    padding: "0.8rem 1.5rem",
+    fontSize: "1rem",
+    color: "#fff",
+    backgroundColor: "#007bff",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer",
+    transition: "background-color 0.3s ease",
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
+  buttonHover: {
+    backgroundColor: "#0056b3",
   },
-  outlineButton: {
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#007bff',
-  },
-  outlineButtonText: {
-    color: '#007bff',
-  },
-});
+};
 
 export default WelcomeScreen;
-
