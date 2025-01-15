@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigate } from "react-router-dom";
 
 const WelcomeScreen = () => {
