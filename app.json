@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "TaxiTip",
+    "slug": "taxitip",
+    "platforms": ["ios", "android", "web"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icons/Moneda_taxitip.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./src/assets/icons/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.taxi.tip"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/icons/icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.taxi.tip"
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./src/assets/icons/favicon.png"
+    }
+  }
+}

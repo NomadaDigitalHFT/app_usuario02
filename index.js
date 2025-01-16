@@ -1,15 +1,25 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App"; // Usando alias si ya está configurado
-import { AuthProvider } from "./src/hooks/AuthProvider";
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyles from './src/styles/globalStyles';
+import theme from './src/styles/theme';
+import AppRoutes from './src/navigation/AppRoutes';
+import AuthRoutes from './src/navigation/AuthRoutes';
+import { AuthProvider, useAuth } from './src/hooks/AuthProvider';
 
-const container = document.getElementById("root");
-const root = createRoot(container);
+const App = () => {
+  const { user } = useAuth();
 
-root.render(
-  <React.StrictMode>
+  return (
     <AuthProvider>
-      <App />
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <BrowserRouter>
+          {user ? <AppRoutes /> : <AuthRoutes />}
+        </BrowserRouter>
+      </ThemeProvider>
     </AuthProvider>
-  </React.StrictMode>
-);
+  );
+};
+
+export default App;
