@@ -33,5 +33,4 @@ const registerUser = async (email, password) => {
   }
 };
 
-export { auth };
-
+export { auth, registerUser };

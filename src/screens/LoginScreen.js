@@ -1,15 +1,26 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
+import { loginUser } from "../firebase/auth"; // Asegúrate de importar
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
 
-  const handleLogin = () => {
-    // Aquí agregar lógica para autenticación
-    navigation.replace("GeoLocation");
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Error", "Por favor ingresa correo y contraseña.");
+      return;
+    }
+
+    try {
+      await loginUser(email.trim(), password);
+      navigation.replace("GeoLocationScreen"); // Cambia esto según la pantalla que quieras mostrar
+    } catch (error) {
+      Alert.alert("Error", error.message || "No se pudo iniciar sesión. Intente de nuevo.");
+    }
   };
 
   return (
@@ -20,6 +31,7 @@ const LoginScreen = () => {
         placeholder="Correo electrónico"
         value={email}
         onChangeText={setEmail}
+        keyboardType="email-address"
       />
       <TextInput
         style={styles.input}
