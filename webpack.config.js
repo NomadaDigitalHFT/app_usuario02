@@ -2,13 +2,20 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     filename: 'bundle.js',
   },
   devServer: {
-    static: './dist',
+    static: {
+      directory: path.resolve(__dirname, 'public'),
+      watch: true,
+    },
+    headers: {
+      'Content-Type': 'application/javascript',
+    },
     hot: true,
     historyApiFallback: true,
   },

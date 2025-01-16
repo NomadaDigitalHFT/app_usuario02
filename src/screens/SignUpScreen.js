@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { registerUser } from '../firebase/firebaseConfig';
 import { validateEmail, validatePassword } from '../utils/validators';
-import { useNavigate } from 'react-router-dom';
+
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState('');

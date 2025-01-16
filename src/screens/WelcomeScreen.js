@@ -1,72 +1,44 @@
-import React from 'react';
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
 
-const WelcomeScreen = () => {
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    navigate("/login");
-  };
-
-  const handleSignUp = () => {
-    navigate("/signup");
-  };
-
+const WelcomeScreen = ({ navigation }) => {
   return (
-    <div style={styles.container}>
-      <h1 style={styles.title}>¡Bienvenido a TaxiTip!</h1>
-      <p style={styles.subtitle}>
+    <View style={styles.container}>
+      <Text style={styles.title}>¡Bienvenido a TaxiTip!</Text>
+      <Text style={styles.subtitle}>
         La forma más sencilla de solicitar y ofrecer servicios de transporte.
-      </p>
-      <div style={styles.buttonContainer}>
-        <button style={styles.button} onClick={handleLogin}>
-          Iniciar Sesión
-        </button>
-        <button style={styles.button} onClick={handleSignUp}>
-          Registrarse
-        </button>
-      </div>
-    </div>
+      </Text>
+      <View style={styles.buttonContainer}>
+        <Button title="Iniciar Sesión" onPress={() => navigation.navigate("Login")} />
+        <Button title="Registrarse" onPress={() => navigation.navigate("SignUp")} />
+      </View>
+    </View>
   );
 };
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
-    display: "flex",
-    flexDirection: "column",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    height: "100vh",
     backgroundColor: "#f5f5f5",
   },
   title: {
-    fontSize: "2rem",
+    fontSize: 24,
     fontWeight: "bold",
-    marginBottom: "1rem",
+    marginBottom: 16,
   },
   subtitle: {
-    fontSize: "1.2rem",
-    marginBottom: "2rem",
+    fontSize: 16,
     textAlign: "center",
+    marginBottom: 24,
     color: "#555",
   },
   buttonContainer: {
-    display: "flex",
-    gap: "1rem",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "80%",
   },
-  button: {
-    padding: "0.8rem 1.5rem",
-    fontSize: "1rem",
-    color: "#fff",
-    backgroundColor: "#007bff",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-    transition: "background-color 0.3s ease",
-  },
-  buttonHover: {
-    backgroundColor: "#0056b3",
-  },
-};
+});
 
 export default WelcomeScreen;

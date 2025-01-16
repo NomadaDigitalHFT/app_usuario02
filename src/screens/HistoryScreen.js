@@ -42,11 +42,8 @@ const styles = StyleSheet.create({
     padding: 16,
     marginVertical: 8,
     borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+    elevation: 2, // Sombra para Android
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)', // Sombra para web
   },
   title: {
     fontSize: 18,
@@ -59,3 +56,4 @@ const styles = StyleSheet.create({
 });
 
 export default HistoryScreen;
+

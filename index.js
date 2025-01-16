@@ -1,25 +1,23 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
-import GlobalStyles from './src/styles/globalStyles';
-import theme from './src/styles/theme';
-import AppRoutes from './src/navigation/AppRoutes';
-import AuthRoutes from './src/navigation/AuthRoutes';
-import { AuthProvider, useAuth } from './src/hooks/AuthProvider';
+import React from "react";
+import { AppRegistry } from "react-native";
+import { AuthProvider } from "./src/hooks/AuthProvider";
+import App from "./App";
+import { name as appName } from "./app.json";
 
-const App = () => {
-  const { user } = useAuth();
-
+const Root = () => {
+  console.log("Rendering Root component");
   return (
     <AuthProvider>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <BrowserRouter>
-          {user ? <AppRoutes /> : <AuthRoutes />}
-        </BrowserRouter>
-      </ThemeProvider>
+      <App />
     </AuthProvider>
   );
 };
 
-export default App;
+AppRegistry.registerComponent(appName, () => Root);
+
+if (document.getElementById("root")) {
+  AppRegistry.runApplication(appName, {
+    initialProps: {},
+    rootTag: document.getElementById("root"),
+  });
+}
