@@ -3,21 +3,33 @@ import { View, Text, TextInput, StyleSheet } from "react-native";
 import ButtonEntrar from "../elements/ButtonEntrar";
 import { loginUser } from "../firebase/auth";
 import { Helmet } from "react-helmet";
+import Alertas from "../elements/Alertas"; // Importamos el componente Alertas
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState("success");
 
   const handleLogin = async () => {
     if (!email || !password) {
-      alert("Por favor, ingresa correo y contraseña.");
+      setAlertMessage("Por favor, ingresa correo y contraseña.");
+      setAlertType("error");
+      setAlertVisible(true);
       return null;
     }
     try {
-      return await loginUser(email.trim(), password); // Retorna el usuario autenticado
+      const user = await loginUser(email.trim(), password);
+      setAlertMessage("Inicio de sesión exitoso.");
+      setAlertType("success");
+      setAlertVisible(true);
+      return user;
     } catch (error) {
       console.error(error.message);
-      alert("Error en el inicio de sesión: " + error.message);
+      setAlertMessage("Error en el inicio de sesión: " + error.message);
+      setAlertType("error");
+      setAlertVisible(true);
       return null;
     }
   };
@@ -43,6 +55,8 @@ const LoginScreen = () => {
         onChangeText={setPassword}
       />
       <ButtonEntrar onPress={handleLogin} />
+      {/* Componente Alertas */}
+      <Alertas message={alertMessage} type={alertType} visible={alertVisible} />
     </View>
   );
 };
