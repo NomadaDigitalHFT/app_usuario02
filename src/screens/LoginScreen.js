@@ -1,30 +1,32 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-
-import { loginUser } from "../firebase/auth"; // Asegúrate de importar
+import { View, Text, TextInput, StyleSheet } from "react-native";
+import ButtonEntrar from "../elements/ButtonEntrar";
+import { loginUser } from "../firebase/auth";
+import { Helmet } from "react-helmet";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigation = useNavigation();
 
   const handleLogin = async () => {
     if (!email || !password) {
-      Alert.alert("Error", "Por favor ingresa correo y contraseña.");
-      return;
+      alert("Por favor, ingresa correo y contraseña.");
+      return null;
     }
-
     try {
-      await loginUser(email.trim(), password);
-      navigation.replace("GeoLocationScreen"); // Cambia esto según la pantalla que quieras mostrar
+      return await loginUser(email.trim(), password); // Retorna el usuario autenticado
     } catch (error) {
-      Alert.alert("Error", error.message || "No se pudo iniciar sesión. Intente de nuevo.");
+      console.error(error.message);
+      alert("Error en el inicio de sesión: " + error.message);
+      return null;
     }
   };
 
   return (
     <View style={styles.container}>
+      <Helmet>
+        <title>TaxiTip - Iniciar Sesión</title>
+      </Helmet>
       <Text style={styles.title}>Iniciar Sesión</Text>
       <TextInput
         style={styles.input}
@@ -40,20 +42,35 @@ const LoginScreen = () => {
         value={password}
         onChangeText={setPassword}
       />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Entrar</Text>
-      </TouchableOpacity>
+      <ButtonEntrar onPress={handleLogin} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 20, backgroundColor: "#f9f9f9" },
-  title: { fontSize: 24, fontWeight: "bold", textAlign: "center", marginBottom: 20 },
-  input: { borderWidth: 1, padding: 10, marginBottom: 15, borderRadius: 5, borderColor: "#ccc" },
-  button: { backgroundColor: "#007bff", padding: 15, borderRadius: 10, alignItems: "center" },
-  buttonText: { color: "#fff", fontWeight: "bold", fontSize: 16 },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 20,
+    backgroundColor: "#f9f9f9",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  input: {
+    borderWidth: 1,
+    padding: 10,
+    marginBottom: 15,
+    borderRadius: 5,
+    borderColor: "#ccc",
+  },
 });
 
 export default LoginScreen;
+
+
+
 

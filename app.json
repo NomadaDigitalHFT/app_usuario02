@@ -1,12 +1,13 @@
 {
   "expo": {
     "name": "TaxiTip",
+    "displayName": "TaxiTip",
     "slug": "taxitip",
     "version": "1.0.0",
     "platforms": ["ios", "android", "web"],
     "icon": "./src/assets/icons/Moneda_taxitip.png",
     "splash": {
-      "image": "./src/assets/icons/splash.png",
+      "image": "./src/assets/icons/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -24,7 +25,7 @@
       "useHermes": true
     },
     "web": {
-      "favicon": "./public/favicon.png"     
+      "favicon": "./public/favicon.png"
     }
   }
 }
